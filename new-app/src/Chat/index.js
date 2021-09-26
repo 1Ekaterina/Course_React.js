@@ -4,6 +4,8 @@ import InputScreen from "./InputScreen";
 import ChatsScreen from "./ChatsScreen";
 import { useEffect, useState } from "react";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { addMessage } from "./ChatSlice";
 
 const theme = createTheme({
   palette: {
@@ -17,7 +19,7 @@ const theme = createTheme({
 });
 
 const useStyles = makeStyles(() => ({
-  app: {
+  chat: {
     display: "flex",
     justifyContent: "center",
     alignContent: "center",
@@ -49,7 +51,8 @@ function Chat() {
 
   const [inputText, setInputText] = useState("");   //Сообщение в поле ввода 
   const [chatsList, setChatsList] = useState([]);   // Массив объектов чатов
-  const [messagesList, setMessagesList] = useState([]);  // Массив объектов сообщений 
+  const { messagesList } = useSelector((state) => state.chat);  // Массив объектов сообщений 
+  const dispatch = useDispatch();
   const [lastName, setLastName] = useState();
 
   useEffect(() => {
@@ -69,15 +72,8 @@ function Chat() {
     ]);
   }, []);
 
-  
   const storeMessageToList = (text, name) => {
-    setMessagesList((prev) => [
-      ...prev,
-      {
-        text: text,
-        author: name,
-      },
-    ]);
+    dispatch(addMessage({ text: text, author: name }));
     setLastName(name);
   };
 
@@ -96,7 +92,7 @@ function Chat() {
 
   return (
    <ThemeProvider theme={theme}>
-      <div className={classes.app}>
+      <div className={classes.chat}>
         <div className={classes.chatsListWindow}>
           <ChatsScreen chats={chatsList} />
         </div>

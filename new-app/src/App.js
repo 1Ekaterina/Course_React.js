@@ -1,35 +1,22 @@
-import { BrowserRouter as Router, Switch, Route, BrowserRouter} from "react-router-dom";
-import Chat from "./Chat/index.js";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Chat from "./Chat";
 import Profile from "./Profile";
-import Home from "./Home.js"
+import AppBar from "./AppBar";
 
-function App() {
- return (
-   <BrowserRouter>
+const App = () => {
+  return (
+    <Router>
+      <AppBar />
       <Switch>
-
-        <Route path="/profile">
-          <Profile />
-        </Route>
-
-        <Route
-          exact
-          path="/chat"
-        >
+        <Route path="/chat">
           <Chat />
         </Route>
-
-        <Route exact path="/">
-          <Home />
+        <Route path="/Profile">
+          <Profile />
         </Route>
-
-        <Route>
-          <h3>Page not found</h3>
-        </Route>
-
       </Switch>
-   </BrowserRouter>
- );
-}
+    </Router>
+  );
+};
 
 export default App;

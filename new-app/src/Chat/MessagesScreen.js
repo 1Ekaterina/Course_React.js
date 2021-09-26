@@ -15,10 +15,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MessagesScreen(props) {
+const MessagesScreen = ({ messages }) => {
   const classes = useStyles();
 
-  const listItems = props.messages.map((message, i) => (
+  const listItems = messages.map((message, i) => (
     <ListItem key={i}>
       <ListItemText>
         <span className={classes.msgAuthor}>
