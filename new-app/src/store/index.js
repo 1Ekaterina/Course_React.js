@@ -1,13 +1,28 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware  } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import profileReducer from "./profileReducer";
 import chatsReducer from "./chatsReducer";
 import messagesReducer from "./messagesReducer";
+import thunk from "redux-thunk";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-const reducers = combineReducers({
+const persistConfig = {
+  key: "socialNet",
+  storage,
+};
+
+const rootReducer  = combineReducers({
   profile: profileReducer,
   chats: chatsReducer,
   messages: messagesReducer,
 });
 
-export const store = createStore(reducers, composeWithDevTools());
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = createStore(
+  persistedReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
+
+export const persistor = persistStore(store);

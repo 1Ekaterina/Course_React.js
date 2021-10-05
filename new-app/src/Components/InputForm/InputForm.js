@@ -1,13 +1,12 @@
 import { memo, useEffect, useRef, useState } from "react";
 import { TextField, Button } from "@material-ui/core";
 import "./inputForm.css";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import addMessage from "../../action/messagesActions";
+import { useDispatch } from "react-redux";
+import  { addMessage } from "../../action/messagesActions";
 
-function InputForm({ chatId }) {
+function InputForm({ chatId, author }) {
   const inputRef = useRef();
   const [textValue, setTextValue] = useState("");
-  const author = useSelector((state) => state.profile.name, shallowEqual);
   const dispatch = useDispatch();
 
   useEffect(() => {
