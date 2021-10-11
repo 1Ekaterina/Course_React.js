@@ -6,16 +6,19 @@ import messagesReducer from "./messagesReducer";
 import thunk from "redux-thunk";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import quotesReducer from "./quotesReducer";
 
 const persistConfig = {
   key: "socialNet",
   storage,
+  blacklist: ["quotes"],
 };
 
 const rootReducer  = combineReducers({
   profile: profileReducer,
   chats: chatsReducer,
   messages: messagesReducer,
+  quotes: quotesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

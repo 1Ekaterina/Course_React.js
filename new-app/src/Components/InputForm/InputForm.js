@@ -3,6 +3,7 @@ import { TextField, Button } from "@material-ui/core";
 import "./inputForm.css";
 import { useDispatch } from "react-redux";
 import  { addMessage } from "../../action/messagesActions";
+import { getRandomQuote, getQuotesByAnimeName } from "../../action/quotesAction";
 
 function InputForm({ chatId, author }) {
   const inputRef = useRef();
@@ -13,9 +14,16 @@ function InputForm({ chatId, author }) {
     inputRef.current?.focus();
   }, [textValue]);
 
-  function submitHandler(e) {
+  function chatSubmitHandler(e) {
     e.preventDefault();
     dispatch(addMessage(chatId, textValue, author));
+    setTextValue("");
+  }
+
+  function quotesSubmitHandler(e) {
+    e.preventDefault();
+    if (textValue) dispatch(getQuotesByAnimeName(textValue));
+    else dispatch(getRandomQuote());
     setTextValue("");
   }
 
@@ -40,7 +48,9 @@ function InputForm({ chatId, author }) {
         color="success"
         type="submit"
         className="form__submit"
-        onClick={(e) => submitHandler(e)}
+        onClick={(e) => {
+          chatId ? chatSubmitHandler(e) : quotesSubmitHandler(e);
+        }}
       >
         Отправить
       </Button>

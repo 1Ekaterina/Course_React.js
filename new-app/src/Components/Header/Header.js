@@ -11,6 +11,9 @@ function Header() {
         <li>
           <Link to="/chats" className="link">Чаты</Link>
         </li>
+        <li>
+          <Link to="/quotes" className="link">Цитаты из Аниме</Link>
+        </li>
       </ul>
     </header>
   );
