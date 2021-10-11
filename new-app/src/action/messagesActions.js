@@ -10,7 +10,7 @@ export const addMessage = (chatId, message, author) => ({
 export const botReply = (chatId) => (dispatch) => {
   setTimeout(() => {
     dispatch(
-      addMessage(chatId, "Отступитесь, и вам принесут тортик.", "ГЛаДОС")
+      addMessage(chatId, "Сорри", "БОТ")
     );
   }, 2000);
 };
