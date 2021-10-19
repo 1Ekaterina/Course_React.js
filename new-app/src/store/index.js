@@ -7,6 +7,7 @@ import thunk from "redux-thunk";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import quotesReducer from "./quotesReducer";
+import userReducer from "./userReducer";
 
 const persistConfig = {
   key: "socialNet",
@@ -19,6 +20,7 @@ const rootReducer  = combineReducers({
   chats: chatsReducer,
   messages: messagesReducer,
   quotes: quotesReducer,
+  user: userReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

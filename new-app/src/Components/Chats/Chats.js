@@ -6,12 +6,13 @@ import {
   List,
   ListItem,
 } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { addChat, deleteChat } from "../../action/chatsAction";
+import { getChats, addChat, deleteChat } from "../../action/chatsAction";
 import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import "./module.chats.css";
+import { getMessages } from "../../action/messagesActions";
 
 function Chats() {
   const [visible, setVisible] = useState(false);
@@ -19,6 +20,16 @@ function Chats() {
 
   const chats = useSelector((state) => state.chats.chatList, shallowEqual);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!chats) {
+      dispatch(getChats());
+    }
+  }, [chats]);
+
+  useEffect(() => {
+    dispatch(getMessages());
+  });
 
   const handleClose = () => setVisible(false);
   const handleOpen = () => setVisible(true);

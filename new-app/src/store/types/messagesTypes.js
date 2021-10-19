@@ -1,3 +1,3 @@
-const ADD_MESSAGE = "ADD_MESSAGE";
+const UPDATE_MESSAGE = "UPDATE_MESSAGE";
 
-export { ADD_MESSAGE };
+export { UPDATE_MESSAGE };

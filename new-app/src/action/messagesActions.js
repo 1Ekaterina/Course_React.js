@@ -1,10 +1,8 @@
-import { ADD_MESSAGE } from "../store/types/messagesTypes";
+import { UPDATE_MESSAGE } from "../store/types/messagesTypes";
 
-export const addMessage = (chatId, message, author) => ({
-  type: ADD_MESSAGE,
-  chatId,
-  message,
-  author,
+export const updateMessages = (data) => ({
+  type: UPDATE_MESSAGE,
+  payload: data,
 });
 
 export const botReply = (chatId) => (dispatch) => {
@@ -15,3 +13,18 @@ export const botReply = (chatId) => (dispatch) => {
   }, 2000);
 };
 
+export const getMessages = () => async (dispatch) => {
+  const responce = await fetch(`http://localhost:3001/messages`);
+  const data = await responce.json();
+  dispatch(updateMessages(data));
+};
+
+export const addMessage = (chatId, text, author) => async (dispatch) => {
+  const responce = await fetch(`http://localhost:3001/messages`, {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify({ chatId, text, author }),
+  });
+  const data = await responce.json();
+  dispatch(updateMessages(data));
+};
