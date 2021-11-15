@@ -1,0 +1,29 @@
+.auth {
+    position: absolute;
+    top: 70px;
+    right: 80px;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.233);
+    border-radius: 20px;
+    padding: 15px;
+    background-color: white;
+    z-index: 1000;
+}
+
+.auth__form {
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+}
+
+.auth__form>*:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.auth__input {
+    padding: 5px;
+}
+
+.auth__error {
+    color: red;
+}

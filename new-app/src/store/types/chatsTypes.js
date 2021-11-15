@@ -1,0 +1,3 @@
+const UPDATE_CHATS = "UPDATE_CHAT";
+
+export { UPDATE_CHATS };

@@ -1,0 +1,8 @@
+.messages {
+  width: 95vw;
+  height: 82vh;
+  overflow: auto;
+}
+.messages__item{
+  padding: 15px;
+}
