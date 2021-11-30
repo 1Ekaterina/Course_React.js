@@ -1,0 +1,9 @@
+.quotes__anime,
+.quotes__character,
+.quotes__quote
+ {
+    color: rgb(1, 13, 78);
+    background-color: rgb(212, 213, 255);
+    padding: 15px;
+    margin-bottom: 15px;
+}
